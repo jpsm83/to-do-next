@@ -1,10 +1,8 @@
-import { useSession, getSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 import Navbar from "../components/Navbar/Navbar";
 import ToDoCard from "../components/ToDoCard/ToDoCard";
 
 export default function Home({ toDos, getSession }) {
-  
-  console.log(getSession)
   
   const displayToDoCards = () => {
     return toDos.map((toDo) => {

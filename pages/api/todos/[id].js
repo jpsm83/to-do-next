@@ -20,9 +20,9 @@ export default async (req, res) => {
       try {
         // next 3 lines will be use when authentication is ready
         // user in section will be able to see only his/hers todos
-        // get the to dos from a user that is loggedin using req.user.id
+        // get the to dos from a user that is loggedin using session.user.email
         
-        // const todo = await ToDo.findOne({ _id: id, user: req.user.id  })
+        // const todo = await ToDo.findOne({ _id: id, user: session.user.email  })
 
         const toDo = await ToDo.findById(id);
         if (!toDo) {
@@ -38,8 +38,8 @@ export default async (req, res) => {
       try {
         // next 3 lines will be use when authentication is ready
         // user in section will be able to update only his/hers todos
-        // get the to dos from a user that is loggedin using req.user.id
-        // const todo = await ToDo.findOneAndUpdate({ id, user: req.user.id  }, req.body, { new: true })
+        // get the to dos from a user that is loggedin using session.user.email
+        // const todo = await ToDo.findOneAndUpdate({ id, user: session.user.email  }, req.body, { new: true })
 
         const toDo = await ToDo.findByIdAndUpdate(id, req.body, { new: true });
         if (!toDo) {
@@ -55,8 +55,8 @@ export default async (req, res) => {
       try {
         // next 3 lines will be use when authentication is ready
         // user in section will be able to delete only his/hers to dos
-        // get the to dos from a user that is loggedin using req.user.id
-        // const todo = await ToDo.deleteOne({ _id: id, user: req.user.id  })
+        // get the to dos from a user that is loggedin using session.user.email
+        // const todo = await ToDo.deleteOne({ _id: id, user: session.user.email  })
 
         const deleteToDo = await ToDo.deleteOne({ _id: id });
         if (!deleteToDo) {
