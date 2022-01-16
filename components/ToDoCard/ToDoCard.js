@@ -7,7 +7,6 @@ import { useState } from "react";
 export default function ToDoCard({
   title,
   id,
-  description,
   priority,
   done,
   dueDate,
@@ -32,12 +31,12 @@ export default function ToDoCard({
   };
 
   return (
-    <div className="flex justify-between mx-5 bg-gray-300 shadow-lg hover:shadow-xl hover:bg-blue-300 m-3 rounded-lg p-2">
+    <div className="flex justify-start w-80 mx-5 bg-gray-300 shadow-lg hover:shadow-xl hover:bg-blue-300 m-3 rounded-lg p-2">
       <h1 className="text-4xl mr-2 sm:text-5xl bg-gray-100 font-bold text-yellow-600 rounded-lg p-1 flex justify-center items-center">{moment(new Date(dueDate)).format("DD")}</h1>
-      <div className="text-md sm:text-lg">
+      <div className="text-md sm:text-lg flex flex-col w-full">
         <div className="flex justify-between">
-          <p className="font-bold text-gray-700 ">{moment(new Date(dueDate)).format("MMM-yyyy")}</p>
-          <div className="flex justify-end">
+          <p className="font-bold text-gray-700">{moment(new Date(dueDate)).format("MMM-yyyy")}</p>
+          <div className="flex">
             <p
               onClick={() =>
                 toggleOptions("priority", isPriority, setIsPriority)
