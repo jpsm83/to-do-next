@@ -5,16 +5,20 @@ import { StarIcon, CheckIcon } from "@heroicons/react/solid";
 import { useState } from "react";
 import moment from "moment";
 import { useSession } from "next-auth/react";
-import { useEffect } from "react";
 
 export default function ToDo({ toDo }) {
-  const { title, id, description, priority, done, dueDate, user } = toDo;
+  const { title, id, description, priority, done, dueDate } = toDo;
 
   const [isPriority, setIsPriority] = useState(priority);
   const [isDone, setIsDone] = useState(done);
 
   const router = useRouter();
-  const session = useSession();
+  const session = useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push("/");
+    }
+  });
 
   const deleteToDo = async () => {
     try {

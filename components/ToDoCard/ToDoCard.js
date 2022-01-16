@@ -16,22 +16,6 @@ export default function ToDoCard({
   const [isPriority, setIsPriority] = useState(priority);
   const [isDone, setIsDone] = useState(done);
 
-  // const togglePriority = async () => {
-  //   setIsPriority(isPriority = !isPriority);
-  //   try {
-  //     await fetch(`http://localhost:3000/api/todos/${id}`, {
-  //       method: "PUT",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-type": "application/json",
-  //       },
-  //       body: JSON.stringify({ priority: isPriority}),
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
   const toggleOptions = async (keyType, option, setOption) => {
     setOption((option = !option));
     try {

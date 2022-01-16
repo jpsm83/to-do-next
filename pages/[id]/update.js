@@ -1,41 +1,32 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 // import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../../components/Navbar/Navbar";
 import moment from "moment";
 
-export default function updateToDos({toDo}) {
-  const [form, setForm] = useState({...toDo});
-  const [isSubmitting, setIsSubmitting] = useState(false);
+export default function updateToDos({ toDo }) {
+  const [form, setForm] = useState({ ...toDo });
   const [errors, setErrors] = useState({});
   const router = useRouter();
-  
-  useEffect(() => {
-    if (isSubmitting) {
-      if (Object.keys(errors).length === 0) {
-        updateToDo();
-      } else {
-        setIsSubmitting(false);
+
+  const updateToDo = async () => {
+    if (Object.keys(errors).length === 0) {
+      try {
+        await fetch(`http://localhost:3000/api/todos/${toDo.id}`, {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(form),
+        });
+        router.push(`/${toDo.id}`);
+      } catch (error) {
+        console.log(error);
       }
     }
-  }, [isSubmitting]);
-
-  async function updateToDo() {
-    try {
-      await fetch(`http://localhost:3000/api/todos/${toDo.id}`, {
-        method: "PUT",
-        headers: {
-          Accept: "application/json",
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
-      router.push(`/${toDo.id}`);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  };
 
   const validate = () => {
     let err = {};
@@ -57,7 +48,7 @@ export default function updateToDos({toDo}) {
     event.preventDefault();
     let errs = validate();
     setErrors(errs);
-    setIsSubmitting(true);
+    updateToDo();
   };
 
   const handleChange = (e) => {
@@ -72,34 +63,33 @@ export default function updateToDos({toDo}) {
       <Navbar />
       <h1>Upate To Do</h1>
       <div>
-        {isSubmitting ? (
-          <h3>Loading...</h3>
-        ) : (
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="Title"
-              name="title"
-              value={form.title}
-              onChange={handleChange}
-            />
-            <label htmlFor="dueDate"> Due Date:
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Title"
+            name="title"
+            value={form.title}
+            onChange={handleChange}
+          />
+          <label htmlFor="dueDate">
+            {" "}
+            Due Date:
             <input
               type="date"
               name="dueDate"
               value={moment(new Date(form.dueDate)).format("YYYY-MM-DD")}
               onChange={handleChange}
-            /></label>
-            <input
-              type="text"
-              placeholder="Description"
-              name="description"
-              value={form.description}
-              onChange={handleChange}
             />
-            <button type="submit">Update</button>
-          </form>
-        )}
+          </label>
+          <input
+            type="text"
+            placeholder="Description"
+            name="description"
+            value={form.description}
+            onChange={handleChange}
+          />
+          <button type="submit">Update</button>
+        </form>
       </div>
     </div>
   );
@@ -107,8 +97,8 @@ export default function updateToDos({toDo}) {
 
 // server side rendering
 updateToDos.getInitialProps = async ({ query: { id } }) => {
-    const res = await fetch(`http://localhost:3000/api/todos/${id}`);
-    const { data } = await res.json();
+  const res = await fetch(`http://localhost:3000/api/todos/${id}`);
+  const { data } = await res.json();
 
-    return { toDo: data }
-}
+  return { toDo: data };
+};

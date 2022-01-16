@@ -1,11 +1,11 @@
-import { getSession } from "next-auth/react";
+import { useSession, getSession } from "next-auth/react";
 import Navbar from "../components/Navbar/Navbar";
 import ToDoCard from "../components/ToDoCard/ToDoCard";
 
 export default function Home({ toDos, getSession }) {
-
-console.log(getSession)
-
+  
+  console.log(getSession)
+  
   const displayToDoCards = () => {
     return toDos.map((toDo) => {
       if (toDo.user === getSession.user.email) {
@@ -37,7 +37,7 @@ Home.getInitialProps = async (context) => {
     const { data } = await res.json();
     return {
       toDos: data,
-      getSession: await getSession(context),
+      getSession: await getSession(context)
     };
   } catch (error) {
     return {

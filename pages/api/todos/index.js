@@ -22,7 +22,7 @@ export default async (req, res ) => {
         // next 3 lines will be use when authentication is ready
         // user in section will be able to see only his/hers todos
         // get the to dos from a user that is loggedin using req.user.id
-        // const todos = await ToDo.find({ user: user })
+        // const todos = await ToDo.find({ user: session.user.email })
 
         const todos = await ToDo.find({});
         res.status(200).json({ success: true, data: todos });
