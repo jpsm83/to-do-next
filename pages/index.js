@@ -29,12 +29,11 @@ export default function Home({ toDos }) {
     <div>
       <Navbar />
       {!session.data ? (
-        <div className="flex justify-center items-center">
-          <h2>Sign in and start to organize your agenda!</h2>
+        <div className="bg-gray-300 m-10 shadow-lg rounded-lg p-10">
+          <h2 className="text-center text-xl sm:text-3xl font-bold text-yellow-600">Sign in and start to organize your agenda!</h2>
         </div>
       ) : (
-        <div className="flex flex-col justify-center items-center mb-10">
-          <p>Hello {session.data.user.name}, welcome to our App!</p>
+        <div className="flex flex-col justify-center items-center m-5">
           {displayToDoCards()}
         </div>
       )}
