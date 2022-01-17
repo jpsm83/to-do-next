@@ -3,15 +3,22 @@ import Navbar from "../components/Navbar/Navbar";
 import ToDoCard from "../components/ToDoCard/ToDoCard";
 
 export default function Home({ toDos }) {
+
   const session = useSession();
 
   const displayToDoCards = () => {
-    return toDos.map((toDo) => {
+      // you cant use .sort() in a object - first change it to an ARRAY
+  let arrayToDos = Object.values(toDos);
+  // must change dates to a "date object" to be interpreted by .sort()
+  let organizedToDos = [...arrayToDos].sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+
+    return organizedToDos.map((toDo) => {
       if (toDo.user === session.data.user.email) {
         return <ToDoCard key={toDo.id} {...toDo} />
       }
-    }).sort(sortByChoosen("done"));
+    })
   };
+
   // this function is working properly
   // DONT TOUCH
   function sortByChoosen(sortType) {

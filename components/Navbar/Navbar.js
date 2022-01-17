@@ -10,7 +10,7 @@ export default function Navbar() {
 
   return (
     <nav>
-      <div className="p-5 bg-blue-400 text-gray-200 flex justify-between">
+      <div className="p-5 bg-blue-400 text-white flex justify-between">
         <Link href="/">
           <div className="cursor-pointer flex space-x-2 items-center justify-start mr-6">
             <BookOpenIcon className="h-10" />
@@ -45,7 +45,7 @@ export default function Navbar() {
       {session && (
         <div className="bg-gray-300 p-3 flex justify-center">
         <Link href="/createToDos">
-          <button className="cursor-pointer shadow-md items-center pb-1 text-blue-700 text-center justify-center px-4 hover:bg-white font-bold hover:shadow-xl bg-gray-100 hover:scale-105 transition transform duration-200 ease-out active:scale-90 rounded-lg ">
+          <button className="cursor-pointer shadow-md items-center pb-1 text-white text-center justify-center px-6 hover:bg-green-800 font-bold hover:shadow-xl bg-green-700 hover:scale-105 transition transform duration-200 ease-out active:scale-90 rounded-lg ">
             Create To Do
           </button>
         </Link>
