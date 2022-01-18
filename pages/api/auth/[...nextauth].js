@@ -7,8 +7,17 @@ export default NextAuth({
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
-    })
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+        },
+      },
+    }),
   ],
-  // mongodb database or any other - no db, then leave empty
-  // database: process.env.MONGO_URI
-})
+  jwt: {
+    encryption: true,
+  },
+  secret: process.env.secret,
+});

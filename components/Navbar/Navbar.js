@@ -23,14 +23,14 @@ export default function Navbar() {
               onClick={signOut}
               className="cursor-pointer flex space-x-2 items-center"
             >
-              <Image
+              {/* <Image
                 src={session.user.image}
                 alt="User photo"
                 width={50}
                 height={50}
                 objectFit="contain"
                 className="flex justify-center overflow-hidden items-center rounded-full"
-              />
+              /> */}
               <LogoutIcon className="h-8" />
             </div>
           </div>
