@@ -18,7 +18,9 @@ export default function Navbar() {
         </Link>
         {session ? (
           <div className="flex space-x-4 items-center justify-between">
-            <p className="font-bold sm:text-xl text-md">Hello {session.user.name}</p>
+            <p className="font-bold sm:text-xl text-md">
+              Hello {session.user.name}
+            </p>
             <div
               onClick={signOut}
               className="cursor-pointer flex space-x-2 items-center"
@@ -35,20 +37,20 @@ export default function Navbar() {
             </div>
           </div>
         ) : (
-            <button onClick={signIn} className="flex space-x-2 items-center">
+          <button onClick={signIn} className="flex space-x-2 items-center">
             <p>Sign In</p>
             <LoginIcon className="h-10" />
-            </button>
+          </button>
         )}
       </div>
       {session && (
         <div className="bg-gray-300 p-3 flex justify-center">
-        <Link href="/createToDos">
-          <button className="cursor-pointer shadow-md items-center pb-1 text-white text-center justify-center px-6 hover:bg-green-800 font-bold hover:shadow-xl bg-green-700 hover:scale-105 transition transform duration-200 ease-out active:scale-90 rounded-lg ">
-            Create To Do
-          </button>
-        </Link>
-      </div>
+          <Link href="/createToDos">
+            <button className="cursor-pointer shadow-md items-center pb-1 text-white text-center justify-center px-6 hover:bg-green-800 font-bold hover:shadow-xl bg-green-700 hover:scale-105 transition transform duration-200 ease-out active:scale-90 rounded-lg ">
+              Create To Do
+            </button>
+          </Link>
+        </div>
       )}
     </nav>
   );
