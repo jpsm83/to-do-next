@@ -2,9 +2,6 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
 export default NextAuth({
-    session: {
-        jwt: true
-    },
   // Configure one or more authentication providers
   providers: [
     GoogleProvider({
@@ -13,5 +10,5 @@ export default NextAuth({
     })
   ],
   // mongodb database or any other - no db, then leave empty
-  database: process.env.MONGO_URI
+  // database: process.env.MONGO_URI
 })
