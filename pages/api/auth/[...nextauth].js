@@ -1,5 +1,5 @@
 import NextAuth from "next-auth";
-import FacebookProvider from "next-auth/providers/google";
+import GoogleProvider from "next-auth/providers/google";
 
 export default NextAuth({
     session: {
@@ -7,9 +7,9 @@ export default NextAuth({
     },
   // Configure one or more authentication providers
   providers: [
-    FacebookProvider({
+    GoogleProvider({
       clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET
+      clientSecret: process.env.GOOGLE_SECRET,
     })
   ],
   // mongodb database or any other - no db, then leave empty

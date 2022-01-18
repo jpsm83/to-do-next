@@ -7,8 +7,8 @@ import moment from "moment";
 import { useSession } from "next-auth/react";
 
 export default function ToDo({ toDo }) {
-  const { title, id, description, priority, done, dueDate } = toDo;
 
+  const { title, id, description, priority, done, dueDate } = toDo
   const [isPriority, setIsPriority] = useState(priority);
   const [isDone, setIsDone] = useState(done);
 
@@ -108,7 +108,7 @@ export default function ToDo({ toDo }) {
 }
 
 // server side rendering
-ToDo.getInitialProps = async ({ query: { id } }) => {
+ToDo.getInitialProps = async ({ query: { id }  }) => {
   const res = await fetch(`http://localhost:3000/api/todos/${id}`);
   const { data } = await res.json();
   return { toDo: data };

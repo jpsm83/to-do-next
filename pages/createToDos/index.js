@@ -35,7 +35,8 @@ export default function createToDos() {
     if (!form.description) {
       err.description = "Description is required";
     }
-    if (!form.dueDate) {
+    if (!form.dueDate || form.dueDate < Date.now()
+    ) {
       err.dueDate = "Due date is required";
     }
     return err;
@@ -71,7 +72,6 @@ export default function createToDos() {
               className="text-yellow-800 outline-0 ml-2 rounded-lg px-2"
               type="date"
               name="dueDate"
-              min={Date.now()}
               onChange={handleChange}
             />
           </div>
@@ -82,7 +82,6 @@ export default function createToDos() {
             <input
               className="text-yellow-800 ml-2 outline-0 rounded-lg px-2 flex-grow"
               type="text"
-              placeholder="Title"
               name="title"
               onChange={handleChange}
             />
@@ -94,9 +93,7 @@ export default function createToDos() {
             <input
               className="text-yellow-800 ml-2 outline-0 rounded-lg px-2 flex-grow"
               type="text"
-              placeholder="Description"
               name="description"
-              value={form.description}
               onChange={handleChange}
             />
           </div>

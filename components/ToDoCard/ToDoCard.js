@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 
 export default function ToDoCard({ title, id, priority, done, dueDate }) {
+
   const [isPriority, setIsPriority] = useState(priority);
   const [isDone, setIsDone] = useState(done);
 
