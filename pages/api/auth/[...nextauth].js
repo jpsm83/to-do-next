@@ -22,7 +22,7 @@ export default NextAuth({
   // jwt: {
   //   encryption: true,
   // },
-  secret: process.env.SECRET,
+  secret: process.env.secret,
   // mongodb database or any other - no db, then leave empty
   database: process.env.MONGO_URI,
 });
