@@ -1,10 +1,11 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";
 
 export default NextAuth({
-  session: {
-    jwt: true,
-  },
+  // session: {
+  //   jwt: true,
+  // },
   // Configure one or more authentication providers
   providers: [
     GoogleProvider({
@@ -18,11 +19,15 @@ export default NextAuth({
         },
       },
     }),
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET
+    })
   ],
-  jwt: {
-    encryption: true,
-  },
-  secret: process.env.SECRET,
+  // jwt: {
+  //   encryption: true,
+  // },
+  // secret: process.env.SECRET,
   // mongodb database or any other - no db, then leave empty
-  database: process.env.MONGO_URI
+  // database: process.env.MONGO_URI
 });
